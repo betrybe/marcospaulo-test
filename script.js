@@ -134,6 +134,7 @@ class ShoppingCart {
     }
 
     this.updateTotalPrice();
+    orderedList.scrollTop = orderedList.scrollHeight;
   }
 
   removeProductFromCart(itemIdx) {
