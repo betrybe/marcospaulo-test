@@ -61,7 +61,20 @@ class ShoppingCart {
     });
   }
 
+  loadAllProducts() {
+    this.doRequest('sites/MLB/search', { q: 'computador' })
+      .then((response) => {
+        const section = document.querySelector('section.items');
+        const items = response.results;
+
+        items.forEach(({ id: sku, title: name, thumbnail: image }) => {
+          section.appendChild(createProductItemElement({ sku, name, image }));
+        });
+      });
+  }
+
   run() {
+    this.loadAllProducts();
   }
 }
 
