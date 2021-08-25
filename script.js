@@ -40,4 +40,26 @@ function createCartItemElement({ sku, name, salePrice }) {
   return li;
 }
 
-window.onload = () => { };
+class ShoppingCart {
+  constructor(config) {
+    this.config = config;
+    this.itemsOnCart = window.localStorage.getItem(this.config.storageKey) || [];
+  }
+
+  run() {
+  }
+}
+
+/**
+ * Cria o carrinho de compras, informando as configurações do carrinho.
+ * OBS.: Essas configurações podem ser obtidas da configuração global da aplicação
+ * ou de um módulo externo específico que contém as configurações do Carrinho de Compras.
+ */
+const shoppingCart = new ShoppingCart({
+  urlBase: 'https://api.mercadolibre.com',
+  storageKey: 'cart',
+});
+
+window.onload = () => {
+  shoppingCart.run();
+};
