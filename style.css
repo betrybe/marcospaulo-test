@@ -1,3 +1,61 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  border: none;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.cart , .item {
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2),
+    0 2px 2px rgba(0, 0, 0, 0.14),
+    0 3px 1px -2px rgba(0, 0, 0, 0.12);
+  background-color: white;
+  overflow: hidden;
+}
+
+.cart__items {
+  flex: 1;
+  overflow: auto;
+  margin: 0;
+  padding: 0;
+}
+
+.cart__item {
+  display: block;
+  list-style: none;
+  margin: 5px;
+  border: 1px solid gainsboro;
+  padding: 5px;
+  background-color: whitesmoke;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.cart__total {
+  border-top: 1px solid whitesmoke;
+  padding: 10px;
+  display: flex;
+  background-color: rgb(240, 240, 240);
+}
+
+.cart__total__title {
+  flex: 1;
+  font-weight: 600;
+  text-align: right;
+}
+
+.empty-cart {
+  margin: 5px 10px;
+}
+
 .container {
   display: flex;
   justify-content: space-around;
@@ -9,16 +67,16 @@
   flex-basis: 70%;
   flex-wrap: wrap;
   justify-content: center;
+  height: 100vh;
+  overflow: auto;
 }
 
 .item {
-  border: 2px solid blue;
-  border-radius: 5px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   height: auto;
-  margin: 5px;
+  margin: 8px;
   width: 200px;
 }
 
@@ -30,6 +88,11 @@
   flex-grow: 1;
   padding: 10px;
   text-align: center;
+  border-bottom: 1px solid whitesmoke;
+  font-variant: small-caps;
+  background-color: whitesmoke;
+  align-items: center;
+  display: flex;
 }
 
 .item .item__image {
@@ -37,21 +100,47 @@
 }
 
 .item .item__add {
-  background-color: green;
+  background-color: rgb(76, 175, 80);
+  color: white;
   border: 0;
-  cursor: pointer;
   margin: 0;
-  padding: 5px;
 }
 
 .cart {
   display: flex;
   flex-basis: 30%;
   flex-flow: column wrap;
+  height: 98.5vh;
+  margin-right: 5px;
+  margin-top: 5px;
+  margin-left: 5px;
+  box-sizing: border-box;
 }
 
 .cart .cart__title {
-  flex-basis: 1;
   font-size: 16pt;
   text-align: center;
+  background-color: rgb(240, 240, 240);
+  padding: 10px;
+  font-variant: small-caps;
+}
+
+.loading {
+  padding: 20px;
+  background-color: rgb(200, 200, 200);
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
+
+.cart , .item , .loading , .empty-cart , .cart__item {
+  border-radius: 5px;
+}
+
+.empty-cart:hover , .cart__item:hover {
+  background-color: gainsboro;
+}
+
+.item__add:hover {
+  background-color: rgb(76, 199, 115);
 }
