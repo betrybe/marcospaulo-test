@@ -46,6 +46,21 @@ class ShoppingCart {
     this.itemsOnCart = window.localStorage.getItem(this.config.storageKey) || [];
   }
 
+  doRequest(action, queryParams) {
+    return new Promise((accept, reject) => {
+      const paramsStr = queryParams ? `?${new URLSearchParams(queryParams)}` : '';
+      fetch(`${this.config.urlBase}/${action}${paramsStr}`, { method: 'GET' })
+        .then((response) => {
+            response.json()
+              .then(
+                (obj) => accept(obj),
+                () => new Error('Resposta do servidor em formato inesperado!'),
+              );
+          },
+          (error) => reject(error));
+    });
+  }
+
   run() {
   }
 }
