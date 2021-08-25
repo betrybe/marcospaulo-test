@@ -30,11 +30,10 @@ function getSkuFromProductItem(item) {
 
 function cartItemClickListener(event) {
   const elem = event.target;
-  const re = /(?:\w*: )(\w*)\s.*/gm;
-  const sku = re.exec(elem.innerText)[1];
+  const elemIdx = Array.from(elem.parentNode.children).indexOf(elem);
 
   const removeEvent = new CustomEvent('removefromcart', {
-    detail: sku,
+    detail: elemIdx,
   });
   document.dispatchEvent(removeEvent);
 
@@ -137,10 +136,9 @@ class ShoppingCart {
     this.updateTotalPrice();
   }
 
-  removeProductFromCart(itemId) {
-    this.cartItems = this.cartItems.filter((item) => item.sku !== itemId);
+  removeProductFromCart(itemIdx) {
+    this.cartItems.splice(itemIdx, 1);
     this.saveToStorage();
-
     this.updateTotalPrice();
   }
 
