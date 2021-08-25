@@ -112,7 +112,15 @@ class ShoppingCart {
     this.loadProductToCart(itemId);
   }
 
+  onEmptyCart() {
+    const orderedList = document.querySelector('.cart__items');
+    while (orderedList.firstChild) {
+      orderedList.removeChild(orderedList.firstChild);
+    }
 
+    this.cartItems = [];
+    this.saveToStorage();
+  }
 
   loadFromStorage() {
     const storageItems = window.localStorage.getItem(this.config.storageKey);
@@ -127,6 +135,10 @@ class ShoppingCart {
   run() {
     document.addEventListener('removefromcart', (event) => {
       this.removeProductFromCart(event.detail);
+    });
+
+    document.querySelector('button.empty-cart').addEventListener('click', () => {
+      this.onEmptyCart();
     });
 
     this.loadAllProducts();
