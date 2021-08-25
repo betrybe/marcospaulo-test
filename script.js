@@ -49,6 +49,29 @@ function createCartItemElement({ sku, name, salePrice }) {
   return li;
 }
 
+function showLoading() {
+  const elem = document.querySelector('div.loading');
+
+  if (elem) {
+    return;
+  }
+
+  const loading = document.createElement('div');
+  loading.className = 'loading';
+  loading.innerHTML = 'loading...';
+  document.body.appendChild(loading);
+}
+
+function hideLoading() {
+  const elem = document.querySelector('div.loading');
+
+  if (!elem) {
+    return;
+  }
+
+  document.body.removeChild(elem);
+}
+
 class ShoppingCart {
   constructor(config) {
     this.config = config;
@@ -57,6 +80,8 @@ class ShoppingCart {
 
   doRequest(action, queryParams) {
     return new Promise((accept, reject) => {
+      showLoading();
+
       const paramsStr = queryParams ? `?${new URLSearchParams(queryParams)}` : '';
       fetch(`${this.config.urlBase}/${action}${paramsStr}`, { method: 'GET' })
         .then((response) => {
@@ -66,7 +91,8 @@ class ShoppingCart {
                 () => new Error('Resposta do servidor em formato inesperado!'),
               );
           },
-          (error) => reject(error));
+          (error) => reject(error))
+        .finally(() => hideLoading());
     });
   }
 

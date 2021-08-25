@@ -54,4 +54,13 @@
   flex-basis: 1;
   font-size: 16pt;
   text-align: center;
+  padding: 5px;
+}
+
+.loading {
+  padding: 20px;
+  background-color: rgb(200, 200, 200);
+  position: absolute;
+  top: 5px;
+  left: 5px;
 }
